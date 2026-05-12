@@ -44,7 +44,8 @@ pip install -r requirements.txt
 
 ```bash
 OPENAI_API_KEY=your_real_openai_api_key
-OPENAI_MODEL=gpt-4o-mini
+OPENAI_MODEL=gpt-4.1-nano
+MAX_OUTPUT_TOKENS=450
 ```
 
 5. Run the app:
@@ -71,7 +72,16 @@ OPENAI_API_KEY=your_real_openai_api_key
 5. Optional: add this secret if you want to change the model:
 
 ```bash
-OPENAI_MODEL=gpt-4o-mini
+OPENAI_MODEL=gpt-4.1-nano
+MAX_OUTPUT_TOKENS=450
 ```
 
 The `.env` file is for local development only and should not be committed or uploaded with your real API key.
+
+## Learning Flow
+
+Python Tutor Bot works like a guided learning chat:
+
+- In explanation, debugging, and improvement modes, it gives a focused answer and asks one follow-up question.
+- In quiz mode, it asks one question at a time, waits for the learner's answer, explains the result, and then continues.
+- The default model is set to `gpt-4.1-nano` to keep testing costs low.
