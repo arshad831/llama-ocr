@@ -108,9 +108,11 @@ def tutor_response(mode, user_input, chat_history, message_history, state):
 
     if not user_input or not user_input.strip():
         warning = "Please type a Python topic, code sample, error message, or quiz answer first."
-        return chat_history + [("", warning)], message_history, state, ""
+        chat_history.append({"role": "assistant", "content": warning})
+        return chat_history, message_history, state, ""
 
     clean_input = user_input.strip()
+    chat_history.append({"role": "user", "content": clean_input})
     message_history.append({"role": "user", "content": clean_input})
 
     if mode == "Quiz Me":
@@ -145,7 +147,7 @@ def tutor_response(mode, user_input, chat_history, message_history, state):
         reply = chat_with_openai(messages)
 
     message_history.append({"role": "assistant", "content": reply})
-    chat_history.append((clean_input, reply))
+    chat_history.append({"role": "assistant", "content": reply})
     return chat_history, message_history, state, ""
 
 
